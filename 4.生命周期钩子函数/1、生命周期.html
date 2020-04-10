@@ -32,12 +32,14 @@
                     this.num++;
                 }
             },
+            // 创建之前是获取不到 vue 对象里面的属性及方法的
             beforeCreate() {
                 console.log("=========beforeCreate=============");
                 console.log("数据模型未加载：" + this.name, this.num);
                 console.log("方法未加载：" + this.show());
                 console.log("html模板未加载：" + document.getElementById("num"));
             },
+            // 创建之后可以获取到 vue 对象里面的属性及方法
             created: function () {
                 console.log("=========created=============");
                 console.log("数据模型已加载：" + this.name, this.num);
@@ -45,19 +47,23 @@
                 console.log("html模板已加载：" + document.getElementById("num"));
                 console.log("html模板未渲染：" + document.getElementById("num").innerText);
             },
+            // 未挂载之前数据是不会渲染上去的
             beforeMount() {
                 console.log("=========beforeMount=============");
                 console.log("html模板未渲染：" + document.getElementById("num").innerText);
             },
+            // 挂载之后数据才可以渲染上去
             mounted() {
                 console.log("=========mounted=============");
                 console.log("html模板已渲染：" + document.getElementById("num").innerText);
             },
+            // 每次数据更新变化之前都会触发此方法
             beforeUpdate() {
                 console.log("=========beforeUpdate=============");
                 console.log("数据模型已更新：" + this.num);
                 console.log("html模板未更新：" + document.getElementById("num").innerText);
             },
+            // 每次数据更新变化之后都会触发此方法
             updated() {
                 console.log("=========updated=============");
                 console.log("数据模型已更新：" + this.num);
